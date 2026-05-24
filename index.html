@@ -1,576 +1,899 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GHEXIT Vision</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GHEXIT VISION | Strategic Autonomy for Ghana</title>
   <style>
+    :root {
+      --bg-dark: #030303;
+      --bg-card: rgba(12, 12, 14, 0.7);
+      --bg-card-hover: rgba(22, 22, 26, 0.95);
+      --accent-gold: #e2b744;
+      --accent-gold-glow: rgba(226, 183, 68, 0.15);
+      --accent-crimson: #c82323;
+      --accent-green: #16a34a;
+      --accent-blue: #2563eb;
+      --text-main: #f5f5f7;
+      --text-muted: #6e6e73;
+      --border-color: rgba(255, 255, 255, 0.04);
+      --border-hover: rgba(226, 183, 68, 0.3);
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html {
       scroll-behavior: smooth;
+      background-color: var(--bg-dark);
     }
 
     body {
-      background: #090909;
-      color: #f5f5f5;
-      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.5;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    :root {
-      --gold: #d4af37;
-      --red: #8b0000;
-      --dark-red: #3b0000;
-      --black: #050505;
-      --soft: #b8b8b8;
+    /* Fixed Layout Anchors to offset sticky header overlap */
+    section, .timeline-container {
+      scroll-margin-top: 140px;
     }
 
-    .navbar {
+    /* High-Tech Interactive Canvas Background */
+    #particle-canvas {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      z-index: 999;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(212,175,55,0.2);
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
     }
 
-    .nav-container {
-      max-width: 1300px;
-      margin: auto;
+    /* Wrap content to layer beautifully over background particles */
+    .app-interface {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Ultra-Premium Glassmorphism Header Menu */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(3, 3, 3, 0.4);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
     }
 
     .logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 5px;
+      color: var(--text-main);
       text-decoration: none;
-      color: white;
-      font-weight: 500;
-      transition: 0.3s ease;
     }
 
-    .nav-links a:hover {
-      color: var(--gold);
+    .logo span {
+      color: var(--accent-gold);
+      text-shadow: 0 0 15px var(--accent-gold-glow);
     }
 
-.hero {
+    nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+
+    nav a.scroll-nav:hover {
+      color: var(--text-main);
+    }
+
+    /* Custom Highlight States for Subpage Links */
+    nav a.blueprint-link:hover {
+      color: var(--accent-blue);
+    }
+
+    nav a.media-link:hover {
+      color: var(--accent-green);
+    }
+
+    /* Specific Action Crimson Button Style Override */
+    .cta-nav {
+      background-color: var(--accent-crimson);
+      color: #fff;
+      padding: 0.7rem 1.6rem;
+      border-radius: 30px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(200, 35, 35, 0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cta-nav:hover {
+      background-color: #e52e2e;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(200, 35, 35, 0.4);
+      color: #fff;
+    }
+
+    /* Cinematic Immersive Hero Section */
+    .hero {
       min-height: 100vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
-        url('https://t3.ftcdn.net/jpg/00/75/56/54/360_F_75565421_Y8hklrQd8ZU9HWnqBmiFc96dztKkRZ8p.jpg');
+      background: 
+        linear-gradient(rgba(3, 3, 3, 0.2), rgba(3, 3, 3, 1)),
+        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYCKmxH7xvQqjGJkOh6BhAPhWLEyCxiTxdRQ&s');
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(212,175,55,0.15), transparent 60%);
+      justify-content: flex-start;
+      padding: 3rem;
+      padding-top: 120px;
     }
 
     .hero-content {
-      position: relative;
-      z-index: 2;
       max-width: 950px;
+      text-align: left;
     }
 
-    .hero h1 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1.05;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 30px rgba(212,175,55,0.25);
+    .hero-content h1 {
+      font-size: 6rem;
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 0.9;
+      margin-bottom: 2rem;
+      color: #fff;
     }
 
-    .hero p {
-      font-size: 1.2rem;
-      color: #e5e5e5;
-      line-height: 1.8;
-      max-width: 850px;
-      margin: auto;
+    .hero-content p {
+      font-size: 1.45rem;
+      color: var(--text-muted);
+      margin-bottom: 3.5rem;
+      max-width: 720px;
+      font-weight: 400;
+      line-height: 1.5;
     }
 
-    .hero-buttons {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .btn {
-      padding: 1rem 2rem;
-      border-radius: 999px;
-      text-decoration: none;
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 1.1rem 2.8rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      transition: 0.3s ease;
-      border: 1px solid var(--gold);
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 40px;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), #ffda63);
-      color: black;
-    }
-
-    .btn-primary:hover {
+    .hero-btn:hover {
+      background-color: var(--text-main);
+      color: var(--bg-dark);
+      border-color: var(--text-main);
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(212,175,55,0.25);
+      box-shadow: 0 15px 30px rgba(255,255,255,0.1);
     }
 
-    .btn-secondary {
-      background: transparent;
-      color: white;
+    /* Infinite Animated Marquee Ticker Block */
+    .marquee-container {
+      background-color: #000;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.5rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      display: flex;
     }
 
-    .btn-secondary:hover {
-      background: rgba(212,175,55,0.1);
+    .marquee-track {
+      display: inline-flex;
+      animation: marqueeAnimation 30s linear infinite;
     }
 
-    section {
-      padding: 6rem 2rem;
+    .marquee-track span {
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      padding: 0 4rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      opacity: 0.8;
     }
 
-    .container {
-      max-width: 1250px;
-      margin: auto;
+    .marquee-track span::after {
+      content: "✦";
+      margin-left: 8rem;
+      color: var(--accent-gold);
     }
 
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: 2.8rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      text-align: center;
+    @keyframes marqueeAnimation {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
     }
 
-    .section-subtitle {
-      text-align: center;
-      color: var(--soft);
-      max-width: 850px;
-      margin: 0 auto 4rem;
-      line-height: 1.8;
-      font-size: 1.05rem;
+    /* Layout Structural Grid Ecosystems */
+    .section {
+      padding: 10rem 3rem;
+      max-width: 1440px;
+      margin: 0 auto;
     }
 
-    .grid {
+    .section-layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: 1fr;
+      gap: 5rem;
     }
 
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border: 1px solid rgba(212,175,55,0.15);
+    .section-aside h2 {
+      font-size: 3.8rem;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-aside h2 span {
+      color: var(--accent-gold);
+    }
+
+    .section-aside p {
+      color: var(--text-muted);
+      max-width: 580px;
+      font-size: 1.25rem;
+    }
+
+    /* Premium Asymmetric Bento Box Interface Cards */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .bento-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 3.5rem 3rem;
       border-radius: 24px;
-      padding: 2rem;
-      transition: 0.3s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       position: relative;
       overflow: hidden;
     }
 
-    .card::before {
+    .bento-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(to right, var(--gold), var(--red));
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.01) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.01) 50%, rgba(255,255,255,0.01) 75%, transparent 75%, transparent);
+      background-size: 8px 8px;
+      pointer-events: none;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(212,175,55,0.35);
+    .bento-card:hover {
+      background-color: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-gold-glow);
+      transform: translateY(-4px) scale(1.01);
     }
 
-    .card h3 {
-      color: var(--gold);
+    .card-meta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent-gold);
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .bento-card h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
       margin-bottom: 1rem;
-      font-size: 1.35rem;
+      color: #fff;
+      letter-spacing: -0.5px;
     }
 
-    .card p {
-      color: #d6d6d6;
-      line-height: 1.7;
+    .bento-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      transition: color 0.3s ease;
     }
 
-    .vision {
-      background: linear-gradient(180deg, #0f0f0f, #090909);
+    .bento-card:hover p {
+      color: #e2e2e9;
     }
 
-    .manifesto {
-      background: linear-gradient(180deg, #120000, #080808);
+    /* Ambient Dual-Gradient Campaign Banner Restored (NPP Blue / NDC Green Axes) */
+    .campaign-tier {
+      background: 
+        radial-gradient(circle at -5% 50%, rgba(37, 99, 235, 0.28), transparent 55%),
+        radial-gradient(circle at 105% 50%, rgba(22, 163, 74, 0.28), transparent 55%),
+        #09090b;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12rem 3rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+    .campaign-wrapper {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+      z-index: 5;
+    }
+
+    .campaign-wrapper h2 {
+      font-size: 4.2rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .campaign-wrapper h2 span {
+      color: var(--accent-crimson);
+    }
+
+    .campaign-body p {
+      color: #f5f5f7;
+      font-size: 1.4rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Dynamic Scroll-Linked Cyber Interactive Timeline */
+    .timeline-container {
+      background-color: var(--bg-dark);
+      position: relative;
+    }
+
+    .timeline-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem 2rem;
       margin-top: 4rem;
     }
 
     .timeline-item {
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      padding: 1.5rem;
-      border-left: 4px solid var(--gold);
-      background: rgba(255,255,255,0.03);
-      border-radius: 18px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 2.5rem;
+      position: relative;
+      transition: all 0.4s ease;
     }
 
-    .timeline-number {
-      min-width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), #ffdb70);
-      color: black;
+    @supports (animation-timeline: view()) {
+      .timeline-item {
+        animation: timelineGlow linear both;
+        animation-timeline: view();
+        animation-range: entry 10% exit 80%;
+      }
+    }
+
+    @keyframes timelineGlow {
+      0% { border-top-color: var(--border-color); transform: translateY(15px); opacity: 0.5; }
+      30% { border-top-color: var(--accent-gold); transform: translateY(0); opacity: 1; }
+      100% { border-top-color: var(--border-color); }
+    }
+
+    .timeline-index {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 1.5rem;
+      display: block;
+      letter-spacing: 1px;
+    }
+
+    .timeline-item h3 {
+      font-size: 1.75rem;
       font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-    }
-
-    .timeline-item h4 {
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
     }
 
     .timeline-item p {
-      color: #ddd;
-      line-height: 1.7;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
+    /* High-Tech Vector Branding Tier Component */
+    .social-tier {
+      background-color: #030303;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 8rem 3rem;
+      text-align: center;
     }
 
-    .gallery-item {
-      height: 420px;
-      border-radius: 24px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(212,175,55,0.15);
-    }
-
-    .gallery-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.85));
-    }
-
-    .gallery-caption {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      z-index: 2;
+    .social-header-text {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: var(--text-muted);
+      margin-bottom: 3.5rem;
       font-weight: 700;
-      color: var(--gold);
-      font-size: 1.1rem;
     }
 
-    .support-box {
-      text-align: center;
-      padding: 4rem 2rem;
-      border-radius: 30px;
-      background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(139,0,0,0.08));
-      border: 1px solid rgba(212,175,55,0.18);
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    .support-box h2 {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      font-size: 2.5rem;
+    .social-icon-box {
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      background-color: var(--bg-card);
+      backdrop-filter: blur(8px);
     }
 
-    .support-box p {
-      max-width: 800px;
-      margin: auto;
-      line-height: 1.8;
-      color: #ddd;
-      margin-bottom: 2rem;
+    .social-icon-box svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--text-muted);
+      transition: fill 0.3s ease, transform 0.3s ease;
     }
 
+    .social-icon-box.x-platform:hover {
+      background-color: #ffffff;
+      border-color: #ffffff;
+      transform: translateY(-8px) scale(1.05);
+    }
+    .social-icon-box.x-platform:hover svg { fill: #000000; }
+
+    .social-icon-box.fb-platform:hover {
+      background-color: #1877f2;
+      border-color: #1877f2;
+      transform: translateY(-8px) scale(1.05);
+    }
+    .social-icon-box.fb-platform:hover svg { fill: #ffffff; }
+
+    .social-icon-box.ig-platform:hover {
+      background-color: #e1306c;
+      border-color: #e1306c;
+      transform: translateY(-8px) scale(1.05);
+    }
+    .social-icon-box.ig-platform:hover svg { fill: #ffffff; }
+
+    .social-icon-box.tt-platform:hover {
+      background-color: #111115;
+      border-color: #00f2fe;
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 242, 254, 0.2);
+    }
+    .social-icon-box.tt-platform:hover svg { fill: #00f2fe; }
+
+    /* Minimalist Technical Action Footer Component */
     footer {
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid rgba(212,175,55,0.15);
-      color: #999;
-      font-size: 0.95rem;
+      background-color: var(--bg-dark);
+      padding: 10rem 3rem 4rem 3rem;
     }
 
-    @media(max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
+    .footer-wrapper {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8rem;
+      margin-bottom: 4rem;
+    }
 
-      .hero h1 {
-        font-size: 3rem;
-      }
+    .footer-aside h3 {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
 
-      .timeline-item {
-        flex-direction: column;
-      }
+    .footer-aside p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 500px;
+    }
+
+    .join-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 550px;
+    }
+
+    .form-row {
+      display: flex;
+      border-bottom: 2px solid var(--border-color);
+      padding: 1rem 0;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-row:focus-within {
+      border-color: var(--accent-gold);
+    }
+
+    .join-form input {
+      flex: 1;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 300;
+    }
+
+    .join-form input:focus {
+      outline: none;
+    }
+
+    .join-form button {
+      background-color: transparent;
+      color: var(--text-main);
+      border: none;
+      font-weight: 700;
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding-left: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .join-form button:hover {
+      transform: translateX(4px);
+      color: var(--accent-gold);
+    }
+
+    .copyright-tier {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      color: #3a3a3f;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content h1 { font-size: 4rem; }
+      .campaign-wrapper, .footer-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+      .section { padding: 6rem 1.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hero-content h1 { font-size: 3rem; }
+      .section-aside h2 { font-size: 2.6rem; }
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">GHEXIT VISION</div>
-      <div class="nav-links">
-        <a href="#vision">Vision</a>
-        <a href="#plan">Reset Plan</a>
-        <a href="#media">Media</a>
-        <a href="#support">Support</a>
+  <canvas id="particle-canvas"></canvas>
+
+  <div class="app-interface">
+
+    <header>
+      <a href="#" class="logo">GHEXIT<span>VISION</span></a>
+      <nav>
+        <a href="#pillars" class="scroll-nav">Policy Pillars</a>
+        <a href="#reset" class="scroll-nav">Reset Plan</a>
+        <a href="blueprint.html" class="blueprint-link">The Blueprint</a>
+        <a href="media.html" class="media-link">Evidence Hub</a>
+        <a href="#join" class="cta-nav">Engage</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>GHEXIT<br>VISION.</h1>
+        <p>Ghana First. Ghana Always. Advocating for a definitive democratic referendum on regional frameworks to protect sovereign growth and secure our long-term national trajectory.</p>
+        <a href="#pillars" class="hero-btn">Examine System</a>
+      </div>
+    </section>
+
+    <div class="marquee-container">
+      <div class="marquee-track">
+        <span>Sovereign Parameters</span>
+        <span>National Focus</span>
+        <span>Industrial Expansion</span>
+        <span>Democratic Referendum Mandate</span>
+        <span>Sovereign Parameters</span>
+        <span>National Focus</span>
+        <span>Industrial Expansion</span>
+        <span>Democratic Referendum Mandate</span>
       </div>
     </div>
-  </nav>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>GHANA FIRST.<br>GHANA ALWAYS.</h1>
-      <p>
-        A sovereign vision for a disciplined, industrial, secure and high-functioning Ghana.
-        GHEXIT Vision explores border sovereignty, anti-corruption reform, industrial strategy,
-        economic competitiveness and national renewal for the next generation.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#vision" class="btn btn-primary">Explore the Vision</a>
-        <a href="#support" class="btn btn-secondary">Join the Movement</a>
+    <section id="pillars" class="section">
+      <div class="section-layout">
+        <div class="section-aside">
+          <h2>The Strategic <span>Pillars</span></h2>
+          <p>A comprehensive national roadmap designed to restore state capacity, enforce secure parameters, and establish structural self-focus.</p>
+        </div>
+        
+        <div class="bento-grid">
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 01</div>
+            <div>
+              <h3>Border Sovereignty</h3>
+              <p>Strong borders, aggressive anti-smuggling enforcement, disciplined immigration systems, and national security policies that prioritize long-term stability and sovereignty.</p>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 02</div>
+            <div>
+              <h3>Industrial Ghana</h3>
+              <p>Special economic zones, automated manufacturing expansion, strategic bilateral partnerships, tech transfer, and capital growth designed to create long-term prosperity.</p>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 03</div>
+            <div>
+              <h3>Anti-Corruption Reform</h3>
+              <p>Independent institutions armed with real enforcement powers, unyielding accountability systems, complete financial transparency, and a structural culture of public discipline.</p>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 04</div>
+            <div>
+              <h3>Economic Sovereignty</h3>
+              <p>A flexible, sovereign trade strategy, formalization of local shadow markets, intensive domestic value creation, and long-term global competitiveness.</p>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 05</div>
+            <div>
+              <h3>Human Capital</h3>
+              <p>Re-engineering the framework of public welfare to match industrial productivity, advanced vocational integration, clear meritocracy, and sustainable development.</p>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 06</div>
+            <div>
+              <h3>Institutional Strength</h3>
+              <p>High-functioning governance systems deliberately inspired by the structural discipline and competence of modern states that transformed themselves rapidly.</p>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 07</div>
+            <div>
+              <h3>State Capacity</h3>
+              <p>Prioritizing internal human capital above uncompetitive regional integration. Directing resources into targeted local investments, safety guarantees, and domestic expansion.</p>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 08</div>
+            <div>
+              <h3>Bilateral Deals</h3>
+              <p>Transitioning from complex multilateral constraints to tailored, transactional bilateral agreements engineered strictly for capital equipment and asset acquisition.</p>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="card-meta">System Mode // 09</div>
+            <div>
+              <h3>Cultural Capital</h3>
+              <p>Safeguarding national intellectual property, protecting our localized digital landscapes, and ensuring domestic advancements remain shielded from external legislative overreach.</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="vision" class="vision">
-    <div class="container">
-      <h2 class="section-title">The Vision</h2>
-      <p class="section-subtitle">
-        GHEXIT Vision is built around the belief that Ghana can become one of Africa’s most disciplined,
-        industrialized and strategically competitive nations through sovereign decision-making,
-        strong institutions and citizen-first development.
-      </p>
-
-      <div class="grid">
-
-        <div class="card">
-          <h3>Border Sovereignty</h3>
-          <p>
-            Strong borders, anti-smuggling enforcement, disciplined immigration systems and national
-            security policies that prioritize long-term stability and sovereignty.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Industrial Ghana</h3>
-          <p>
-            Special economic zones, manufacturing expansion, strategic bilateral partnerships,
-            technology transfer and industrial growth designed to create real jobs and long-term prosperity.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Anti-Corruption Reform</h3>
-          <p>
-            Independent institutions with real enforcement powers, strong accountability systems,
-            financial transparency and a culture of discipline across public life.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Economic Sovereignty</h3>
-          <p>
-            Flexible trade strategy, formalisation of the informal economy, domestic value creation
-            and long-term national competitiveness.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Welfare With Discipline</h3>
-          <p>
-            A future welfare state built on industrial productivity, vocational development,
-            meritocracy and sustainable economic growth.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Institutional Strength</h3>
-          <p>
-            High-functioning governance systems inspired by the discipline and competence of
-            successful modern states that transformed themselves rapidly.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="plan" class="manifesto">
-    <div class="container">
-      <h2 class="section-title">The 6-Phase Reset Plan</h2>
-      <p class="section-subtitle">
-        A structured national transformation framework focused on sovereignty, security,
-        competitiveness and long-term national renewal.
-      </p>
-
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-number">1</div>
-          <div>
-            <h4>Foundation</h4>
-            <p>
-              Formal strategic reset discussions, institutional transition planning and a national framework
-              for long-term sovereign policy alignment.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-number">2</div>
-          <div>
-            <h4>Mindset Shift</h4>
-            <p>
-              Adoption of a disciplined, competitive and globally strategic national mindset focused on performance,
-              self-reliance and national excellence.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-number">3</div>
-          <div>
-            <h4>Security Reset</h4>
-            <p>
-              Aggressive anti-smuggling enforcement, border modernization, anti-Galamsey operations,
-              human trafficking crackdowns and disciplined immigration systems.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-number">4</div>
-          <div>
-            <h4>Governance Reset</h4>
-            <p>
-              Independent anti-corruption enforcement, public sector audits, identity verification systems
-              and stronger accountability structures.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-number">5</div>
-          <div>
-            <h4>Economic Strategy</h4>
-            <p>
-              Bilateral industrial partnerships, technology transfer, manufacturing zones,
-              logistics modernization, formalization of shadow markets and strategic trade development.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-number">6</div>
-          <div>
-            <h4>Social Foundation</h4>
-            <p>
-              Building sustainable welfare systems funded by industrial growth, productivity,
-              disciplined governance and long-term economic expansion.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="media">
-    <div class="container">
-      <h2 class="section-title">Campaign Media</h2>
-      <p class="section-subtitle">
-        Cinematic visual campaigns exploring sovereignty, governance, industrialization,
-        corruption, borders and the future of Ghana.
-      </p>
-
-      <div class="gallery">
-
-        <div class="gallery-item" style="background-image:url('https://cdn.prod.website-files.com/67c72b8d6148fe0b16baef35/6812540ffde3437ae6b20757_manufacturing.webp');">
-          <div class="gallery-caption">Industrial Sovereignty</div>
-        </div>
-
-        <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');">
-          <div class="gallery-caption">Technology & Infrastructure</div>
-        </div>
-
-        <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop');">
-          <div class="gallery-caption">National Logistics & Trade</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="support">
-    <div class="container">
-      <div class="support-box">
-        <h2>Join The Movement</h2>
-        <p>
-          GHEXIT Vision is building a national conversation around sovereignty, industrial development,
-          institutional reform and long-term competitiveness. Support future white papers, policy forums,
-          media production and national discussions.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#" class="btn btn-primary">Support The Vision</a>
-          <a href="#" class="btn btn-secondary">Follow on X</a>
+    <div class="campaign-tier">
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14rem; font-weight: 900; color: rgba(255,255,255,0.012); user-select: none; pointer-events: none; letter-spacing: 12px;">2028</div>
+      <div class="campaign-wrapper">
+        <h2>The 2028 Ballot Mandate is <span>Not Optional.</span></h2>
+        <div class="campaign-body">
+          <p>True democracy extends beyond choosing between political establishments every four years. A direct, binding referendum on our regional commitments MUST be included on the ballot. Trust the choice of the Ghanaian citizen.</p>
         </div>
       </div>
     </div>
-  </section>
 
-  <footer>
-    © 2026 GHEXIT Vision — Ghana First. Competition Over Stagnation.
-  </footer>
+    <div class="timeline-container" id="reset">
+      <section class="section">
+        <div class="section-aside" style="margin-bottom: 4rem;">
+          <h2>The National <span>Reset Framework</span></h2>
+          <p>Demanding a profound evaluation of our democratic mechanisms, border safety baselines, and historical governance responsibilities.</p>
+        </div>
+
+        <div class="timeline-layout">
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 01</span>
+            <h3>Democratic Reset</h3>
+            <p>What does Ghana truly define as its democracy? True choice requires engaging citizens directly in high-stakes structural decisions, shifting away from standard binary political selections every four years.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 02</span>
+            <h3>Referendum Reset</h3>
+            <p>Demonstrate true democratic faith rather than simply reciting it. We advocate for a clean, binding public ballot regarding regional treaties to formally entrust the ultimate direction of the state to the people.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 03</span>
+            <h3>Security Reset</h3>
+            <p>Is the grassroots citizen safe under current regional protocols? National safety cannot remain an asset exclusive to those who can afford wired defenses and private security guards. The state must provide secure parameter controls for all.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 04</span>
+            <h3>Governance Reset</h3>
+            <p>Redefining our baseline peers. True institutional transformation requires evaluating our systemic performance and anti-corruption frameworks against elite global models, rather than relying on standard regional comparisons.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 05</span>
+            <h3>Social Foundation</h3>
+            <p>Honoring the primary architectural vision. Before dedicating national focus to expansive supranational ideals, we must first fulfill the original, unexecuted mandates of our forefathers and traditional Chiefs to serve the Ghanaian citizen.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 06</span>
+            <h3>Economic Reset</h3>
+            <p>A systemic transition combining specialized bilateral manufacturing partnerships, automated tool tracking, logistics modernization, market formalization, and an institutional culture built on performance and self-reliance.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="social-tier">
+      <div class="social-header-text">Amplify the Strategic Voice</div>
+      <div class="social-grid">
+        <a href="#" class="social-icon-box x-platform" title="Follow on X">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="social-icon-box fb-platform" title="Follow on Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+        </a>
+        <a href="#" class="social-icon-box ig-platform" title="Follow on Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" class="social-icon-box tt-platform" title="Follow on TikTok">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.01.08 1.53.63 3.02 1.59 4.23.91.13 1.85.11 2.76-.05.01 1.43-.01 2.86 0 4.3-.92-.01-1.84-.25-2.65-.69-.49-.27-.93-.63-1.3-1.05v5.79c-.03 2.1-.9 4.19-2.48 5.58-1.56 1.4-3.79 2.05-5.88 1.76-2.28-.27-4.36-1.72-5.41-3.78-1.15-2.2-1.01-5.01.37-7.07 1.28-1.96 3.56-3.21 5.92-3.22.02 1.43-.01 2.87 0 4.31-.76-.01-1.53.16-2.2.53-.87.46-1.46 1.39-1.55 2.39-.12 1.15.42 2.32 1.37 2.97.94.67 2.19.74 3.19.2.9-.45 1.46-1.42 1.48-2.43v-10.8z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <footer id="join">
+      <div class="footer-wrapper">
+        <div class="footer-aside">
+          <h3>Initialize Strategic Engagement</h3>
+          <p>Register to receive formal policy updates, economic research data releases, and notifications regarding the upcoming 2028 democratic roadmap briefings.</p>
+        </div>
+        
+        <form class="join-form" onsubmit="event.preventDefault(); alert('Strategic network connection initialized.');">
+          <div class="form-row">
+            <input type="email" placeholder="YOUR SECURE NETWORK EMAIL" required>
+            <button type="submit">➔</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="copyright-tier">
+        <div>&copy; <span id="current-year"></span> GHEXITVISION HUB.</div>
+        <div>ALL CRITICAL DATA ENCRYPTED.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let mouse = { x: null, y: null, radius: 160 };
+    window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+
+    let particles = [];
+    const numberOfParticles = 80;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.density = (Math.random() * 30) + 15;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(226, 183, 68, 0.35)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+      }
+      update() {
+        if (mouse.x != null && mouse.y != null) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < mouse.radius) {
+            let force = (mouse.radius - distance) / mouse.radius;
+            let directionX = (dx / distance) * force * this.density;
+            let directionY = (dy / distance) * force * this.density;
+            this.x += directionX;
+            this.y += directionY;
+          } else {
+            if (this.x !== this.baseX) this.x -= (this.x - this.baseX) * 0.08;
+            if (this.y !== this.baseY) this.y -= (this.y - this.baseY) * 0.08;
+          }
+        } else {
+          if (this.x !== this.baseX) this.x -= (this.x - this.baseX) * 0.08;
+          if (this.y !== this.baseY) this.y -= (this.y - this.baseY) * 0.08;
+        }
+      }
+    }
+
+    function init() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => { init(); });
+    init();
+    animate();
+  </script>
 
 </body>
 </html>
