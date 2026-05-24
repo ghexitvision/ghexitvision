@@ -15,8 +15,7 @@
       --accent-green: #16a34a;
       --accent-blue: #2563eb;
       --text-main: #f5f5f7;
-      --text-muted: #9a9a12; /* Enhanced baseline visibility color */
-      --text-nav: #e2e2e9;
+      --text-muted: #6e6e73;
       --border-color: rgba(255, 255, 255, 0.04);
       --border-hover: rgba(226, 183, 68, 0.3);
     }
@@ -63,16 +62,16 @@
       z-index: 2;
     }
 
-    /* Ultra-Premium Glassmorphism Header Menu with Enhanced Contrast Shield */
+    /* Ultra-Premium Glassmorphism Header Menu */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: linear-gradient(to bottom, rgba(3, 3, 3, 0.9) 0%, rgba(3, 3, 3, 0.7) 70%, rgba(3, 3, 3, 0.3) 100%);
-      backdrop-filter: blur(30px) saturate(190%);
-      -webkit-backdrop-filter: blur(30px) saturate(190%);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background-color: rgba(3, 3, 3, 0.4);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border-color);
       z-index: 1000;
       padding: 1.5rem 3rem;
       display: flex;
@@ -84,9 +83,8 @@
       font-weight: 900;
       font-size: 1.25rem;
       letter-spacing: 5px;
-      color: #ffffff;
+      color: var(--text-main);
       text-decoration: none;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .logo span {
@@ -101,30 +99,26 @@
     }
 
     nav a {
-      color: var(--text-nav);
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      color: var(--text-muted);
       text-decoration: none;
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      transition: all 0.25s ease;
+      transition: color 0.25s ease;
     }
 
     nav a.scroll-nav:hover {
-      color: #ffffff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      color: var(--text-main);
     }
 
     /* Custom Highlight States for Subpage Links */
     nav a.blueprint-link:hover {
       color: var(--accent-blue);
-      text-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
     }
 
     nav a.media-link:hover {
       color: var(--accent-green);
-      text-shadow: 0 0 10px rgba(22, 163, 74, 0.6);
     }
 
     /* Specific Action Crimson Button Style Override */
@@ -134,31 +128,30 @@
       padding: 0.7rem 1.6rem;
       border-radius: 30px;
       font-weight: 700;
-      box-shadow: 0 4px 12px rgba(200, 35, 35, 0.3);
-      text-shadow: none;
+      box-shadow: 0 4px 12px rgba(200, 35, 35, 0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .cta-nav:hover {
       background-color: #e52e2e;
       transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(200, 35, 35, 0.5);
+      box-shadow: 0 10px 20px rgba(200, 35, 35, 0.4);
       color: #fff;
-      text-shadow: none;
     }
 
     /* Cinematic Immersive Hero Section */
     .hero {
       min-height: 100vh;
       background: 
-        linear-gradient(rgba(3, 3, 3, 0.15), rgba(3, 3, 3, 1)),
-        url('https://cdn.modernghana.com/story_/926/499/1252023123607-i41p266ffa-1252023121232-black-star-square-1.jpg');
+        linear-gradient(rgba(3, 3, 3, 0.2), rgba(3, 3, 3, 1)),
+        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYCKmxH7xvQqjGJkOh6BhAPhWLEyCxiTxdRQ&s');
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       padding: 3rem;
-      padding-top: 140px;
+      padding-top: 120px;
     }
 
     .hero-content {
@@ -173,17 +166,15 @@
       line-height: 0.9;
       margin-bottom: 2rem;
       color: #fff;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.6);
     }
 
     .hero-content p {
       font-size: 1.45rem;
-      color: #e2e2e9;
+      color: var(--text-muted);
       margin-bottom: 3.5rem;
       max-width: 720px;
       font-weight: 400;
       line-height: 1.5;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
     .hero-btn {
@@ -191,7 +182,7 @@
       align-items: center;
       background-color: transparent;
       color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       padding: 1.1rem 2.8rem;
       font-size: 0.85rem;
       font-weight: 700;
@@ -201,7 +192,6 @@
       border-radius: 40px;
       backdrop-filter: blur(8px);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
     .hero-btn:hover {
@@ -209,7 +199,7 @@
       color: var(--bg-dark);
       border-color: var(--text-main);
       transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(255,255,255,0.15);
+      box-shadow: 0 15px 30px rgba(255,255,255,0.1);
     }
 
     /* Infinite Animated Marquee Ticker Block */
@@ -277,7 +267,7 @@
     }
 
     .section-aside p {
-      color: #6e6e73;
+      color: var(--text-muted);
       max-width: 580px;
       font-size: 1.25rem;
     }
@@ -338,7 +328,7 @@
     }
 
     .bento-card p {
-      color: #6e6e73;
+      color: var(--text-muted);
       font-size: 1rem;
       line-height: 1.6;
       transition: color 0.3s ease;
@@ -348,7 +338,7 @@
       color: #e2e2e9;
     }
 
-    /* Ambient Dual-Gradient Campaign Banner (NPP Blue / NDC Green Split Glow) */
+    /* Ambient Dual-Gradient Campaign Banner Restored (NPP Blue / NDC Green Axes) */
     .campaign-tier {
       background: 
         radial-gradient(circle at -5% 50%, rgba(37, 99, 235, 0.28), transparent 55%),
@@ -376,8 +366,7 @@
       font-size: 4.2rem;
       font-weight: 900;
       letter-spacing: -2px;
-      line-height: 1.1;
-      color: #fff;
+      line-height: 1;
     }
 
     .campaign-wrapper h2 span {
@@ -391,105 +380,60 @@
       font-weight: 300;
     }
 
-    /* Interactive Connected Vertical Timeline Thread Style */
+    /* Dynamic Scroll-Linked Cyber Interactive Timeline */
     .timeline-container {
       background-color: var(--bg-dark);
       position: relative;
     }
 
-    .timeline-wrapper-track {
-      position: relative;
+    .timeline-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem 2rem;
       margin-top: 4rem;
-      padding-left: 3rem;
     }
 
-    /* The continuous physical backbone line linking steps together */
-    .timeline-wrapper-track::before {
-      content: '';
-      position: absolute;
-      top: 15px;
-      left: 7px;
-      bottom: 15px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--border-color), rgba(226, 183, 68, 0.4), var(--border-color));
-      z-index: 1;
-    }
-
-    .timeline-step {
+    .timeline-item {
+      border-top: 1px solid var(--border-color);
+      padding-top: 2.5rem;
       position: relative;
-      padding-bottom: 4rem;
-      z-index: 2;
+      transition: all 0.4s ease;
     }
 
-    .timeline-step:last-child {
-      padding-bottom: 0;
+    @supports (animation-timeline: view()) {
+      .timeline-item {
+        animation: timelineGlow linear both;
+        animation-timeline: view();
+        animation-range: entry 10% exit 80%;
+      }
     }
 
-    /* The interactive floating junction point node geometry */
-    .timeline-node {
-      position: absolute;
-      left: -3rem;
-      top: 6px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background-color: #121214;
-      border: 2px solid #6e6e73;
-      z-index: 3;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    @keyframes timelineGlow {
+      0% { border-top-color: var(--border-color); transform: translateY(15px); opacity: 0.5; }
+      30% { border-top-color: var(--accent-gold); transform: translateY(0); opacity: 1; }
+      100% { border-top-color: var(--border-color); }
     }
 
-    /* Micro-layout context container window inside step frame */
-    .timeline-content-block {
-      background-color: rgba(255, 255, 255, 0.01);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2.5rem;
-      max-width: 900px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .timeline-index-tag {
+    .timeline-index {
       font-size: 0.8rem;
       font-weight: 700;
       color: var(--accent-gold);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
       display: block;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
 
-    .timeline-content-block h3 {
-      font-size: 1.8rem;
+    .timeline-item h3 {
+      font-size: 1.75rem;
       font-weight: 800;
       margin-bottom: 1rem;
       letter-spacing: -0.5px;
-      color: #fff;
     }
 
-    .timeline-content-block p {
-      color: #6e6e73;
-      font-size: 1.1rem;
+    .timeline-item p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
       line-height: 1.65;
-      transition: color 0.3s ease;
-    }
-
-    /* High-Tech Chain Reactions On Hover State Parameters */
-    .timeline-step:hover .timeline-node {
-      background-color: var(--accent-gold);
-      border-color: #fff;
-      transform: scale(1.3);
-      box-shadow: 0 0 15px var(--accent-gold);
-    }
-
-    .timeline-step:hover .timeline-content-block {
-      background-color: rgba(226, 183, 68, 0.02);
-      border-color: rgba(226, 183, 68, 0.25);
-      transform: translateX(10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    .timeline-step:hover .timeline-content-block p {
-      color: #e2e2e9;
     }
 
     /* High-Tech Vector Branding Tier Component */
@@ -505,7 +449,7 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 5px;
-      color: #6e6e73;
+      color: var(--text-muted);
       margin-bottom: 3.5rem;
       font-weight: 700;
     }
@@ -533,7 +477,7 @@
     .social-icon-box svg {
       width: 26px;
       height: 26px;
-      fill: #6e6e73;
+      fill: var(--text-muted);
       transition: fill 0.3s ease, transform 0.3s ease;
     }
 
@@ -593,7 +537,7 @@
     }
 
     .footer-aside p {
-      color: #6e6e73;
+      color: var(--text-muted);
       font-size: 1.2rem;
       max-width: 500px;
     }
@@ -658,44 +602,16 @@
       text-transform: uppercase;
     }
 
-    /* Adaptive Structural Layout Viewports */
     @media (max-width: 1024px) {
       .hero-content h1 { font-size: 4rem; }
       .campaign-wrapper, .footer-wrapper { grid-template-columns: 1fr; gap: 3rem; }
       .section { padding: 6rem 1.5rem; }
     }
 
-    /* Fixed Navigation Rules across Compact Screen Formats */
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 1.25rem;
-        padding: 1.25rem 1rem;
-        background: rgba(3, 3, 3, 0.95);
-      }
-      nav {
-        gap: 1.25rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-      }
-      nav a {
-        font-size: 0.75rem;
-        letter-spacing: 1px;
-      }
-      .cta-nav {
-        padding: 0.5rem 1.2rem;
-      }
-      .hero {
-        padding-top: 180px;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
+      nav { display: none; }
       .hero-content h1 { font-size: 3rem; }
       .section-aside h2 { font-size: 2.6rem; }
-      .timeline-wrapper-track { padding-left: 1.5rem; }
-      .timeline-node { left: -1.5rem; }
-      .timeline-content-block { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -746,63 +662,63 @@
         
         <div class="bento-grid">
           <div class="bento-card">
-            <div class="card-meta">System Mode 01</div>
+            <div class="card-meta">System Mode // 01</div>
             <div>
               <h3>Border Sovereignty</h3>
               <p>Strong borders, aggressive anti-smuggling enforcement, disciplined immigration systems, and national security policies that prioritize long-term stability and sovereignty.</p>
             </div>
           </div>
           <div class="bento-card">
-            <div class="card-meta">System Mode 02</div>
+            <div class="card-meta">System Mode // 02</div>
             <div>
               <h3>Industrial Ghana</h3>
               <p>Special economic zones, automated manufacturing expansion, strategic bilateral partnerships, tech transfer, and capital growth designed to create long-term prosperity.</p>
             </div>
           </div>
           <div class="bento-card">
-            <div class="card-meta">System Mode 03</div>
+            <div class="card-meta">System Mode // 03</div>
             <div>
               <h3>Anti-Corruption Reform</h3>
               <p>Independent institutions armed with real enforcement powers, unyielding accountability systems, complete financial transparency, and a structural culture of public discipline.</p>
             </div>
           </div>
           <div class="bento-card">
-            <div class="card-meta">System Mode 04</div>
+            <div class="card-meta">System Mode // 04</div>
             <div>
               <h3>Economic Sovereignty</h3>
               <p>A flexible, sovereign trade strategy, formalization of local shadow markets, intensive domestic value creation, and long-term global competitiveness.</p>
             </div>
           </div>
           <div class="bento-card">
-            <div class="card-meta">System Mode 05</div>
+            <div class="card-meta">System Mode // 05</div>
             <div>
               <h3>Human Capital</h3>
               <p>Re-engineering the framework of public welfare to match industrial productivity, advanced vocational integration, clear meritocracy, and sustainable development.</p>
             </div>
           </div>
           <div class="bento-card">
-            <div class="card-meta">System Mode 06</div>
+            <div class="card-meta">System Mode // 06</div>
             <div>
               <h3>Institutional Strength</h3>
               <p>High-functioning governance systems deliberately inspired by the structural discipline and competence of modern states that transformed themselves rapidly.</p>
             </div>
           </div>
           <div class="bento-card">
-            <div class="card-meta">System Mode 07</div>
+            <div class="card-meta">System Mode // 07</div>
             <div>
               <h3>State Capacity</h3>
               <p>Prioritizing internal human capital above uncompetitive regional integration. Directing resources into targeted local investments, safety guarantees, and domestic expansion.</p>
             </div>
           </div>
           <div class="bento-card">
-            <div class="card-meta">System Mode 08</div>
+            <div class="card-meta">System Mode // 08</div>
             <div>
               <h3>Bilateral Deals</h3>
               <p>Transitioning from complex multilateral constraints to tailored, transactional bilateral agreements engineered strictly for capital equipment and asset acquisition.</p>
             </div>
           </div>
           <div class="bento-card">
-            <div class="card-meta">System Mode 09</div>
+            <div class="card-meta">System Mode // 09</div>
             <div>
               <h3>Cultural Capital</h3>
               <p>Safeguarding national intellectual property, protecting our localized digital landscapes, and ensuring domestic advancements remain shielded from external legislative overreach.</p>
@@ -815,7 +731,7 @@
     <div class="campaign-tier">
       <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14rem; font-weight: 900; color: rgba(255,255,255,0.012); user-select: none; pointer-events: none; letter-spacing: 12px;">2028</div>
       <div class="campaign-wrapper">
-        <h2>A Simple 2028 Presidential Ballot is Not <span>Enough</span></h2>
+        <h2>The 2028 Ballot Mandate is <span>Not Optional.</span></h2>
         <div class="campaign-body">
           <p>True democracy extends beyond choosing between political establishments every four years. A direct, binding referendum on our regional commitments MUST be included on the ballot. Trust the choice of the Ghanaian citizen.</p>
         </div>
@@ -824,67 +740,42 @@
 
     <div class="timeline-container" id="reset">
       <section class="section">
-        <div class="section-aside" style="margin-bottom: 2rem;">
+        <div class="section-aside" style="margin-bottom: 4rem;">
           <h2>The National <span>Reset Framework</span></h2>
           <p>Demanding a profound evaluation of our democratic mechanisms, border safety baselines, and historical governance responsibilities.</p>
         </div>
 
-        <div class="timeline-wrapper-track">
-          
-          <div class="timeline-step">
-            <div class="timeline-node"></div>
-            <div class="timeline-content-block">
-              <span class="timeline-index-tag">PHASE 01</span>
-              <h3>Democratic Reset</h3>
-              <p>What does Ghana truly define as its democracy? True choice requires engaging citizens directly in high-stakes structural decisions, shifting away from standard binary political selections every four years.</p>
-            </div>
+        <div class="timeline-layout">
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 01</span>
+            <h3>Democratic Reset</h3>
+            <p>What does Ghana truly define as its democracy? True choice requires engaging citizens directly in high-stakes structural decisions, shifting away from standard binary political selections every four years.</p>
           </div>
-
-          <div class="timeline-step">
-            <div class="timeline-node"></div>
-            <div class="timeline-content-block">
-              <span class="timeline-index-tag">PHASE 02</span>
-              <h3>Referendum Reset</h3>
-              <p>Demonstrate true democratic faith rather than simply reciting it. We advocate for a clean, binding public ballot regarding regional treaties to formally entrust the ultimate direction of the state to the people.</p>
-            </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 02</span>
+            <h3>Referendum Reset</h3>
+            <p>Demonstrate true democratic faith rather than simply reciting it. We advocate for a clean, binding public ballot regarding regional treaties to formally entrust the ultimate direction of the state to the people.</p>
           </div>
-
-          <div class="timeline-step">
-            <div class="timeline-node"></div>
-            <div class="timeline-content-block">
-              <span class="timeline-index-tag">PHASE 03</span>
-              <h3>Security Reset</h3>
-              <p>Is the grassroots citizen safe under current regional protocols? National safety cannot remain an asset exclusive to those who can afford wired defenses and private security guards. The state must provide secure parameter controls for all.</p>
-            </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 03</span>
+            <h3>Security Reset</h3>
+            <p>Is the grassroots citizen safe under current regional protocols? National safety cannot remain an asset exclusive to those who can afford wired defenses and private security guards. The state must provide secure parameter controls for all.</p>
           </div>
-
-          <div class="timeline-step">
-            <div class="timeline-node"></div>
-            <div class="timeline-content-block">
-              <span class="timeline-index-tag">PHASE 04</span>
-              <h3>Governance Reset</h3>
-              <p>Redefining our baseline peers. True institutional transformation requires evaluating our systemic performance and anti-corruption frameworks against elite global models, rather than relying on standard regional comparisons.</p>
-            </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 04</span>
+            <h3>Governance Reset</h3>
+            <p>Redefining our baseline peers. True institutional transformation requires evaluating our systemic performance and anti-corruption frameworks against elite global models, rather than relying on standard regional comparisons.</p>
           </div>
-
-          <div class="timeline-step">
-            <div class="timeline-node"></div>
-            <div class="timeline-content-block">
-              <span class="timeline-index-tag">PHASE 05</span>
-              <h3>Social Foundation</h3>
-              <p>Honoring the primary architectural vision. Before dedicating national focus to expansive supranational ideals, we must first fulfill the original, unexecuted mandates of our forefathers and traditional Chiefs to serve the Ghanaian citizen.</p>
-            </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 05</span>
+            <h3>Social Foundation</h3>
+            <p>Honoring the primary architectural vision. Before dedicating national focus to expansive supranational ideals, we must first fulfill the original, unexecuted mandates of our forefathers and traditional Chiefs to serve the Ghanaian citizen.</p>
           </div>
-
-          <div class="timeline-step">
-            <div class="timeline-node"></div>
-            <div class="timeline-content-block">
-              <span class="timeline-index-tag">PHASE 06</span>
-              <h3>Economic Reset</h3>
-              <p>A systemic transition combining specialized bilateral manufacturing partnerships, automated tool tracking, logistics modernization, market formalization, and an institutional culture built on performance and self-reliance.</p>
-            </div>
+          <div class="timeline-item">
+            <span class="timeline-index">PHASE // 06</span>
+            <h3>Economic Reset</h3>
+            <p>A systemic transition combining specialized bilateral manufacturing partnerships, automated tool tracking, logistics modernization, market formalization, and an institutional culture built on performance and self-reliance.</p>
           </div>
-
         </div>
       </section>
     </div>
